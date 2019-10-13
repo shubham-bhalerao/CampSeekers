@@ -1,0 +1,172 @@
+<% include ../partials/header%>
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-3">
+         <ul class="list-group" style="margin-top:30px">
+            <li class="list-group-item active">Info 1</li>
+            <li class="list-group-item">Info 2</li>
+            <li class="list-group-item">Info 3</li>
+         </ul>
+         <hr>
+         <div id="map"></div>
+      </div>
+      <div class="col-md-9">
+         <div class="card" style="width: 100%; margin-top:30px;">
+            <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
+            <div class="card-body">
+               <span class="float-right">
+                  <% if(currentUser && hasBooked) { %>
+                  <button class="btn btn-primary" disabled>Booked</button>
+                  <% } else if(currentUser){ %>
+                  <form action="/charge/<%=campground._id%>" method="POST">
+                     <strong>Price $<%=campground.price%>.00</strong>
+                     <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                        data-key="<%=keyPublishable%>" data-locale="auto"
+                        data-description="Payment for <%=campground.title%>" data-amount="<%=amount%>"></script>
+                  </form>
+                  <% } else { %>
+                  <article>
+                     <label>Amount <%=campground.price%></label>
+                  </article>
+                  <% } %>
+               </span>
+               <h5 class="card-title">
+                  <%=campground.title%>
+               </h5>
+               <p class="card-text">
+                  <%=campground.content%>
+               </p>
+               <p>Submitted By <strong class="user"><a href="/users/<%=campground.author.id%>">
+                        <%=campground.author.username%></a></strong> ,
+                  <em>
+                     <%=moment(campground.createdAt).fromNow()%></em>
+               </p>
+               <% if(currentUser && currentUser._id.equals(campground.author.id) ||(currentUser && currentUser.isAdmin) ){%>
+               <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
+               <form class="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger btn-sm">Delete</button>
+               </form>
+               <%}%>
+            </div>
+         </div>
+         <div class="card review-section">
+            <div class="card-body">
+               <% if(campground.rating===0){ %>
+               <h5><em>No Reviews Yet</em></h5>
+               <%} else { %>
+               <p>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
+                  <em>(total reviews:
+                     <%= campground.reviews.length %>)</em>
+               </p>
+               <p>
+                  Current campground rating: <strong>
+                     <%= campground.rating.toFixed(2) %></strong>
+               </p>
+               <p>
+                  <h4>Latest reviews for this campground:</h4>
+               </p>
+               <hr>
+               <% campground.reviews.slice(0, 5).forEach(function(review){ %>
+               <div class="row">
+                  <div class="col-md-3">
+
+                     <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %>
+                     <%- '<span class="fa fa-star"></span>'.repeat(5 - review.rating) %>
+                     <div>Review by: <strong>
+                           <%= review.author.username %></strong></div>
+                     <span><em>
+                           <%= moment(review.createdAt).fromNow() %>
+                        </em></span>
+                  </div>
+                  <div class="col-md-9">
+                     <p style="text-align: justify; word-wrap: break-word;">
+                        <%= review.text %>
+                     </p>
+                     <% if(currentUser && review.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
+                     <a class="btn btn-sm btn-warning"
+                        href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                     <form class="delete-form"
+                        action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE"
+                        method="POST">
+                        <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                     </form>
+                     <% } %>
+                  </div>
+               </div>
+               <hr>
+               <% });%>
+               <div style="margin-bottom: 10px;">
+                  <h4><a href="/campgrounds/<%= campground._id %>/reviews"><i class="fa fa-search"
+                           aria-hidden="true"></i>
+                        See all reviews</a></h4>
+               </div>
+               <% } %>
+               <div>
+                  <a class="btn btn-primary btn-lg <% if (currentUser && 
+                  campground.reviews.some(function (review) 
+                  {return review.author.id.equals(currentUser._id)})
+                  ) { %> disabled <% } %>" href="/campgrounds/<%= campground._id %>/reviews/new">
+                     Write a New Review</a>
+               </div>
+            </div>
+         </div>
+         <div class="card comment-section">
+            <div class="card-body">
+               <div class="text-right">
+                  <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New
+                     Comment</a>
+               </div>
+               <hr>
+               <div class="row">
+                  <%campground.comments.forEach(function(comment){ %>
+                  <div class="col-md-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <div class="float-left">
+                              <p><a href="/users/<%=comment.author.id%>"><strong>
+                                       <%=comment.author.username%></strong>
+                                 </a></p>
+                              <p>
+                                 <%= comment.text%>
+                              </p>
+                           </div>
+                           <div class="float-right">
+                              <p>
+                                 <em>
+                                    <%=moment(comment.createdAt).fromNow()%></em>
+                              </p>
+                              <div class="float-right">
+                                 <% if(currentUser && currentUser._id.equals(comment.author.id) ||(currentUser && currentUser.isAdmin)){%>
+                                 <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                                 <form class="delete-form"
+                                    action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                 </form>
+                                 <%}%>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                  </div>
+                  <% }); %>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <script>
+                  var campground = <%- JSON.stringify(campground); %>      
+               </script>
+               <script src="/js/mapbox.js"></script>
+               <% include ../partials/footer%>

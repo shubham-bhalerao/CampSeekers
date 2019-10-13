@@ -1,0 +1,65 @@
+<% include ../partials/header%>
+<style>
+   .jumbotron {
+      margin-top: 30px;
+   }
+</style>
+<div class="container">
+   <div class="jumbotron">
+      <h1 class="display-4">Welcome To YelpCamp!</h1>
+      <p class="lead">View Handpicked Campgrounds just for you!</p>
+      <p>
+         <form action="/campgrounds" method="GET" class="form-inline">
+            <div class="form-group ui-widget">
+               <input type="text" name="search" id="tags" placeholder="Search Campground" class="form-control">
+               <input type="submit" value="Search" class="form-control">
+            </div>
+         </form>
+      </p>
+      <hr class="my-4">
+      <a class="btn btn-primary btn-lg" href="/campgrounds/new" role="button">Add a Campground</a>
+   </div>
+   <div style="margin:20px 0">
+      <% if(campgrounds.page-1>=1){ %>
+      <a href="/campgrounds?page=<%=campgrounds.page-1%>">Prev</a>
+      <% } %>
+      <% for(let i=1;i<=campgrounds.pages;i++){ %>
+      <a href="/campgrounds?page=<%=i%>" <%= i === campgrounds.page ? "style=color:#000" : '' %>> <%=i%> </a>
+      <% } %>
+      <% if( campgrounds.page + 1 <=campgrounds.pages){ %>
+      <a href="/campgrounds?page=<%=campgrounds.page+1%>">Next</a>
+      <% } %>
+   </div>
+   <div class="row">
+      <% campgrounds.docs.forEach(function(campground){ %>
+      <div class="col-md-3">
+         <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
+            <div class="card-body text-center">
+               <h5 class="card-title">
+                  <%=campground.title%>
+               </h5>
+               <% if (campground.rating === 0) { %>
+               <em>No reviews yet.</em>
+               <% } else { %>
+               <span class="fa fa-star checked"></span>
+               <span class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"></span>
+               <span class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"></span>
+               <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
+               <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
+               <% } %>
+               <br>
+               <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">View</a>
+            </div>
+         </div>
+      </div>
+      <% }); %>
+   </div>
+</div>
+
+
+<script>
+   var campgrounds = <%- JSON.stringify(campgrounds.docs) %>;
+</script>
+<script src="/js/autocomplete.js"></script>
+<% include ../partials/footer%>

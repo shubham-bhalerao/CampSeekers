@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+<div class="container">
+   <h3 style="text-align:center; margin: 20px;">Reviews for
+      <%=campground.title%>
+   </h3>
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card">
+            <br>
+            <div class="card-body">
+               <% campground.reviews.forEach(function(review){ %>
+               <div class="card">
+                  <div class="card-body">
+                     <div class="float-left">
+                        <strong>
+                           <%=review.author.username%></strong>
+                        <span class="ml-3">
+                           <%- '<span class="fa fa-star checked"></span>'.repeat(review.rating) %>
+                           <%- '<span class="fa fa-star"></span>'.repeat(5 - review.rating) %>
+                        </span>
+                        <p>
+                           <%=review.text%>
+                        </p>
+                     </div>
+                     <div class="float-right">
+                        <p>
+                           <em>
+                              <%=moment(review.createdAt).fromNow()%></em>
+                        </p>
+                        <% if(currentUser && currentUser._id.equals(review.author.id) || (currentUser && currentUser.isAdmin)){ %>
+                        <a class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                        <form class="delete-form" action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE"
+                           method="POST">
+                           <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                        </form>
+                        <%}%>
+
+                     </div>
+                  </div>
+               </div>
+               <br>
+               <% }) %>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<% include ../partials/footer %>

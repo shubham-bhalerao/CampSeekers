@@ -1,0 +1,46 @@
+.comment-section,
+.review-section {
+   margin-top: 30px;
+}
+
+.delete-form {
+   display: inline;
+}
+
+a {
+   text-decoration: none;
+   color: #00B7ff;
+}
+
+.checked {
+   color: orange;
+}
+
+/*MapBox Styling */
+body {
+   margin: 0;
+   padding: 0;
+}
+
+#map {
+   width: 100%;
+   height: 400px;
+}
+
+.marker {
+   background-image: url('/images/mapbox-icon.png');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+}
+
+.mapboxgl-popup {
+   max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+   text-align: center;
+   font-family: 'Open Sans', sans-serif;
+}

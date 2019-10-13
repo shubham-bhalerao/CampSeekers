@@ -1,0 +1,82 @@
+<% include ./partials/header%>
+<div class="container">
+   <br />
+   <div class="jumbotron">
+      <h1 class="display-4">
+         <%=user.firstName%> <%=user.lastName%>
+      </h1>
+      <p class="lead">
+         User Handle: <%=user.username%>
+         <br />
+         <%if(user.isAdmin){%> Admin <%}%>
+      </p>
+      <hr class="my-4" />
+      <% if(currentUser && !doesFollow && !currentUser._id.equals(user._id)){ %>
+      <a href="/follow/<%=user._id%>" class="btn btn-primary"
+         >Follow <%=user.username%></a
+      >
+      <% } %> <% if(currentUser && doesFollow){ %>
+      <a href="/unfollow/<%=user._id%>" class="btn btn-primary"
+         >Unfollow <%=user.username%></a
+      >
+      <% } %>
+   </div>
+   <p class="lead">
+      Campgrounds Posted By <%=user.username%> :
+      <strong> <%=campgrounds.length%></strong>
+   </p>
+   <div class="row">
+      <% campgrounds.forEach(function(campground){ %>
+      <div class="col-md-4">
+         <div class="card" style="width: 18rem;">
+            <img
+               class="card-img-top"
+               src="<%=campground.img%>"
+               alt="Card image cap"
+            />
+            <div class="card-body">
+               <h5 class="card-title">
+                  <%=campground.title%>
+               </h5>
+               <a
+                  href="/campgrounds/<%=campground._id%>"
+                  class="btn btn-primary"
+                  >View</a
+               >
+            </div>
+         </div>
+      </div>
+      <% }); %>
+   </div>
+
+   <hr />
+   <p class="lead">
+      Campgrounds Booked By <%=user.username%> :
+      <strong> <%=bookedCampgrounds.length%></strong>
+   </p>
+   <div class="row">
+      <% bookedCampgrounds.forEach(function(campground){ %>
+      <div class="col-md-4">
+         <div class="card" style="width: 18rem;">
+            <img
+               class="card-img-top"
+               src="<%=campground.img%>"
+               alt="Card image cap"
+            />
+            <div class="card-body">
+               <h5 class="card-title">
+                  <%=campground.title%>
+               </h5>
+               <a
+                  href="/campgrounds/<%=campground._id%>"
+                  class="btn btn-primary"
+                  >View</a
+               >
+            </div>
+         </div>
+      </div>
+      <% }); %>
+   </div>
+</div>
+
+<% include ./partials/footer%>

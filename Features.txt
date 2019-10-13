@@ -1,0 +1,12 @@
+Additional Features Added :
+
+-Password Reset
+-Notifications
+-Admin Role
+-Mapbox
+-Fuzzy Search
+-Stripe Payments
+-Login back to prev Page
+-User Profiles
+-Pagination
+-Autocomplete on Fuzzy Search based on Author name, Location or title

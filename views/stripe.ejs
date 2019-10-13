@@ -1,0 +1,10 @@
+<% include ./partials/header%>
+<form action="/charge" method="POST">
+   <article>
+      <label for="">Amount $5</label>
+   </article>
+   <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="<%=keyPublishable%>"
+      data-locale="auto" data-description="Sample Charge" data-amount="500"></script>
+
+</form>
+<% include ./partials/footer%>
