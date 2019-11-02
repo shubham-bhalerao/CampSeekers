@@ -2,7 +2,7 @@
 <div class="container">
    <h1 style="text-align:center">New Comment</h1>
    <div style="width:30%; margin: 20px auto;">
-      <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
+      <form action="/campgrounds/<%=campground.slug%>/comments" method="POST">
          <div class="form-group">
             <input type="text" class="form-control" placeholder="Say Something..." name="comment[text]" required>
          </div>

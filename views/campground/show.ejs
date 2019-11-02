@@ -19,7 +19,7 @@
                   <% if(currentUser && hasBooked) { %>
                   <button class="btn btn-primary" disabled>Booked</button>
                   <% } else if(currentUser){ %>
-                  <form action="/charge/<%=campground._id%>" method="POST">
+                  <form action="/charge/<%=campground.slug%>" method="POST">
                      <strong>Price $<%=campground.price%>.00</strong>
                      <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
                         data-key="<%=keyPublishable%>" data-locale="auto"
@@ -43,7 +43,7 @@
                   </button>
                </span>
                <div style="padding-bottom: 10px;">
-                  <form action="/campgrounds/<%= campground._id %>/like" method="POST">
+                  <form action="/campgrounds/<%= campground.slug %>/like" method="POST">
                      <div class="btn-group">
                         <% if (currentUser && campground.likes.some(function (like) {
                 return like.equals(currentUser._id)
@@ -81,8 +81,8 @@
                      <%=moment(campground.createdAt).fromNow()%></em>
                </p>
                <% if(currentUser && currentUser._id.equals(campground.author.id) ||(currentUser && currentUser.isAdmin) ){%>
-               <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
-               <form class="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+               <a href="/campgrounds/<%=campground.slug%>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
+               <form class="delete-form" action="/campgrounds/<%=campground.slug%>?_method=DELETE" method="POST">
                   <button class="btn btn-outline-danger btn-sm">Delete</button>
                </form>
                <%}%>
@@ -128,9 +128,9 @@
                      </p>
                      <% if(currentUser && review.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
                      <a class="btn btn-sm btn-outline-warning"
-                        href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
+                        href="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>/edit">Edit</a>
                      <form class="delete-form"
-                        action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE"
+                        action="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>?_method=DELETE"
                         method="POST">
                         <input type="submit" class="btn btn-sm btn-outline-danger" value="Delete">
                      </form>
@@ -140,7 +140,7 @@
                <hr>
                <% });%>
                <div style="margin-bottom: 10px;">
-                  <h4><a href="/campgrounds/<%= campground._id %>/reviews"><i class="fa fa-search"
+                  <h4><a href="/campgrounds/<%= campground.slug %>/reviews"><i class="fa fa-search"
                            aria-hidden="true"></i>
                         See all reviews</a></h4>
                </div>
@@ -149,7 +149,7 @@
                   <a class="btn btn-outline-primary btn-lg <% if (currentUser && 
                   campground.reviews.some(function (review) 
                   {return review.author.id.equals(currentUser._id)})
-                  ) { %> disabled <% } %>" href="/campgrounds/<%= campground._id %>/reviews/new">
+                  ) { %> disabled <% } %>" href="/campgrounds/<%= campground.slug %>/reviews/new">
                      Write a New Review</a>
                </div>
             </div>
@@ -157,7 +157,7 @@
          <div class="card comment-section">
             <div class="card-body">
                <div class="text-right">
-                  <a class="btn btn-outline-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New
+                  <a class="btn btn-outline-success" href="/campgrounds/<%= campground.slug %>/comments/new">Add New
                      Comment</a>
                </div>
                <hr>
@@ -181,10 +181,10 @@
                               </p>
                               <div class="float-right">
                                  <% if(currentUser && currentUser._id.equals(comment.author.id) ||(currentUser && currentUser.isAdmin)){%>
-                                 <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit"
+                                 <a href="/campgrounds/<%=campground.slug%>/comments/<%=comment._id%>/edit"
                                     class="btn btn-sm btn-outline-warning">Edit</a>
                                  <form class="delete-form"
-                                    action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                    action="/campgrounds/<%=campground.slug%>/comments/<%=comment._id%>?_method=DELETE"
                                     method="POST">
                                     <button class="btn btn-sm btn-outline-danger">Delete</button>
                                  </form>

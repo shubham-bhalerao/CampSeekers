@@ -1,7 +1,7 @@
 <% include ../partials/header %>
+
 <div class="container">
-   <h3 style="text-align:center; margin: 20px;">Reviews for
-      <%=campground.title%>
+   <h3 style="text-align:center; margin: 20px;">Reviews for <%=campground.title%>
    </h3>
    <div class="row">
       <div class="col-md-12">
@@ -24,12 +24,13 @@
                      </div>
                      <div class="float-right">
                         <p>
-                           <em>
-                              <%=moment(review.createdAt).fromNow()%></em>
+                           <em><%=moment(review.createdAt).fromNow()%></em>
                         </p>
                         <% if(currentUser && currentUser._id.equals(review.author.id) || (currentUser && currentUser.isAdmin)){ %>
-                        <a class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a>
-                        <form class="delete-form" action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE"
+                        <a class="btn btn-sm btn-warning"
+                           href="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>/edit">Edit</a>
+                        <form class="delete-form"
+                           action="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>?_method=DELETE"
                            method="POST">
                            <input type="submit" class="btn btn-sm btn-danger" value="Delete">
                         </form>
@@ -40,10 +41,10 @@
                </div>
                <br>
                <% }) %>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
-      </div>
-   </div>
-</div>
 
-<% include ../partials/footer %>
+         <% include ../partials/footer %>

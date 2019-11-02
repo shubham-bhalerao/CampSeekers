@@ -3,6 +3,7 @@ const express = require("express"),
    Campground = require("../models/campground"),
    Comment = require("../models/comment"),
    User = require("../models/user"),
+   Review = require("../models/review"),
    Notification = require("../models/notification"),
    keyPublishable = process.env.PUBLISHABLE_KEY,
    middleware = require("../middleware/index");
@@ -82,7 +83,7 @@ router.post("/", middleware.isLoggedIn, async function (req, res) {
 
       let newNotification = {
          user: req.user.username,
-         campgroundId: campground._id,
+         campgroundSlug: campground.slug,
          createdWhat: "campground"
       }
       for (const follower of user.followers) {
@@ -98,8 +99,8 @@ router.post("/", middleware.isLoggedIn, async function (req, res) {
 });
 
 //Show Page
-router.get("/:id", function (req, res) {
-   Campground.findById(req.params.id).populate("comments likes").populate({
+router.get("/:slug", function (req, res) {
+   Campground.findOne({ slug: req.params.slug }).populate("comments likes").populate({
       path: "reviews",
       options: {
          sort: {
@@ -116,7 +117,7 @@ router.get("/:id", function (req, res) {
          if (req.user) {
             let user = await User.findById(req.user._id);
             hasBooked = user.bookedCampgrounds.some(function (camp) {
-               return camp._id.equals(campground._id);
+               return camp._id.equals(campground.slug);
             });
          }
          res.render("campground/show", {
@@ -129,8 +130,8 @@ router.get("/:id", function (req, res) {
    });
 });
 
-router.get("/:id/edit", middleware.campgroundOwnership, function (req, res) {
-   Campground.findById(req.params.id, function (err, campground) {
+router.get("/:slug/edit", middleware.campgroundOwnership, function (req, res) {
+   Campground.findOne({ slug: req.params.slug }, function (err, campground) {
       if (err || !campground) {
          console.log(err);
       } else {
@@ -141,10 +142,10 @@ router.get("/:id/edit", middleware.campgroundOwnership, function (req, res) {
    });
 });
 
-router.put("/:id", middleware.campgroundOwnership, async function (req, res) {
+router.put("/:slug", middleware.campgroundOwnership, async function (req, res) {
    delete req.body.campground.rating;
    try {
-      let campground = await Campground.findById(req.params.id);
+      let campground = await Campground.findOne({ slug: req.params.slug });
       if (req.body.campground.location !== campground.location) {
          let response = await geocodingClient.forwardGeocode({
             query: req.body.campground.location,
@@ -157,9 +158,9 @@ router.put("/:id", middleware.campgroundOwnership, async function (req, res) {
       campground.price = req.body.campground.price;
       campground.img = req.body.campground.img;
       campground.content = req.body.campground.content;
-      campground.save();
+      await campground.save();
       req.flash("success", "Successfully Updated Campground!");
-      res.redirect(`/campgrounds/${campground._id}`);
+      res.redirect(`/campgrounds/${campground.slug}`);
    } catch (err) {
       req.flash("error", err.message);
       res.redirect("back");
@@ -167,8 +168,8 @@ router.put("/:id", middleware.campgroundOwnership, async function (req, res) {
 });
 
 //Updated To delete associated comments and reviews
-router.delete("/:id", middleware.campgroundOwnership, function (req, res) {
-   Campground.findById(req.params.id, function (err, campground) {
+router.delete("/:slug", middleware.campgroundOwnership, function (req, res) {
+   Campground.findOne({ slug: req.params.slug }, function (err, campground) {
       if (err || !campground) {
          req.flash("error", err.message);
          return res.redirect("/campgrounds");
@@ -194,12 +195,14 @@ router.delete("/:id", middleware.campgroundOwnership, function (req, res) {
          }
       });
       campground.remove();
+      req.flash("success", "Successfully Deleted Campground");
+      res.redirect("/campgrounds");
    });
 });
 
 // Campground Like Route
-router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
-   Campground.findById(req.params.id, function (err, foundCampground) {
+router.post("/:slug/like", middleware.isLoggedIn, function (req, res) {
+   Campground.findOne({ slug: req.params.slug }, function (err, foundCampground) {
       if (err) {
          console.log(err);
          return res.redirect("/campgrounds");
@@ -227,7 +230,7 @@ router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
             return res.redirect("/campgrounds");
          }
          req.flash("success", msg);
-         return res.redirect("/campgrounds/" + foundCampground._id);
+         return res.redirect("/campgrounds/" + foundCampground.slug);
       });
    });
 });

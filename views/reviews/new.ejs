@@ -2,7 +2,7 @@
 <div class="container">
    <h1 style="text-align:center" class="mt-4">Write A Review</h1>
    <div style="width:30%; margin: 20px auto;">
-      <form action="/campgrounds/<%=campground._id%>/reviews" method="POST">
+      <form action="/campgrounds/<%=campground.slug%>/reviews" method="POST">
          <div class="lead mb-1">
             How many Stars would you give ?
          </div>
@@ -36,8 +36,8 @@
                <%- '<span class="fa fa-star checked"></span>'.repeat(1) %>
             </label>
             <div class="form-group">
-               <textarea class="form-control" type="text" name="review[text]" placeholder="Write a review for this campground..."
-                  rows="5"></textarea>
+               <textarea class="form-control" type="text" name="review[text]"
+                  placeholder="Write a review for this campground..." rows="5"></textarea>
             </div>
             <div class="form-group">
                <button class="btn btn-primary btn-lg btn-block btn-outline-primary">Submit Review</button>

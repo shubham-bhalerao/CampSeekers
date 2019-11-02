@@ -13,6 +13,6 @@ Additional Features Added :
 10.Pagination
 11.Autocomplete on Fuzzy Search based on Author name, Location and title
 12.Likes 
-13.Slugs (to be added)
+13.Slugs 
 14.Moment Js time
 15.Migrated to Bootstrap 4

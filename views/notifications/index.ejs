@@ -3,7 +3,7 @@
 
    <ul class="list-group">
 
-      <% notifications.forEach(function(notification){ %>
+      <% allNotifications.forEach(function(notification){ %>
       <a href="/campgrounds/<%=notification.campgroundId%>">
          <li class="list-group-item">
             <%=notification.user%> created a new

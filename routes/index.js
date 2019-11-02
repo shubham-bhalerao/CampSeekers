@@ -50,12 +50,13 @@ router.get("/login", function (req, res) {
 
 router.post("/login", function (req, res, next) {
    passport.authenticate("local", function (err, user, info) {
+      //user is true if correctly logged in
       if (err) {
          return next(err);
       }
       if (!user) {
-         req.flash("error", "No user found. Please Sign Up!");
-         return res.redirect("/register");
+         req.flash("error", info.message);
+         return res.redirect("back");
       }
       req.logIn(user, function (err) {
          if (err) {
