@@ -1,12 +1,18 @@
 Additional Features Added :
+(In no particular order)
 
--Password Reset
--Notifications
--Admin Role
--Mapbox
--Fuzzy Search
--Stripe Payments
--Login back to prev Page
--User Profiles
--Pagination
--Autocomplete on Fuzzy Search based on Author name, Location or title
+1.Password Reset
+2.Reviews
+3.Notifications
+4.Admin Role
+5.Mapbox
+6.Fuzzy Search
+7.Stripe Payments
+8.Login back to prev Page
+9.User Profiles
+10.Pagination
+11.Autocomplete on Fuzzy Search based on Author name, Location and title
+12.Likes 
+13.Slugs (to be added)
+14.Moment Js time
+15.Migrated to Bootstrap 4

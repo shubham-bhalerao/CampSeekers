@@ -6,13 +6,13 @@
 </style>
 <div class="container">
    <div class="jumbotron">
-      <h1 class="display-4">Welcome To YelpCamp!</h1>
+      <h1 class="display-4">Welcome To CampSeekers!</h1>
       <p class="lead">View Handpicked Campgrounds just for you!</p>
       <p>
          <form action="/campgrounds" method="GET" class="form-inline">
             <div class="form-group ui-widget">
                <input type="text" name="search" id="tags" placeholder="Search Campground" class="form-control">
-               <input type="submit" value="Search" class="form-control">
+               <input type="submit" class="btn btn-outline-info" value="Search" class="form-control">
             </div>
          </form>
       </p>
@@ -39,6 +39,7 @@
                <h5 class="card-title">
                   <%=campground.title%>
                </h5>
+
                <% if (campground.rating === 0) { %>
                <em>No reviews yet.</em>
                <% } else { %>
@@ -48,8 +49,14 @@
                <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
                <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
                <% } %>
-               <br>
-               <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">View</a>
+
+               <div style="margin-top: 7px;">
+                  Likes:
+                  <span class="badge label-primary"><i class="fas fa-thumbs-up"></i>
+                     <%= campground.likes.length %></span>
+               </div>
+               <hr>
+               <a href="/campgrounds/<%=campground._id%>" class="btn btn-outline-primary">View</a>
             </div>
          </div>
       </div>
@@ -59,7 +66,7 @@
 
 
 <script>
-   var campgrounds = <%- JSON.stringify(campgrounds.docs) %>;
+   var campgrounds = <% - JSON.stringify(campgrounds.docs) %>;
 </script>
 <script src="/js/autocomplete.js"></script>
 <% include ../partials/footer%>
