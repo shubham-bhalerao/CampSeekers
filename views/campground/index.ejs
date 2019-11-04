@@ -1,4 +1,9 @@
 <% include ../partials/header%>
+
+<head>
+   <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+   </link>
+</head>
 <style>
    .jumbotron {
       margin-top: 30px;
@@ -68,5 +73,9 @@
 <script>
    var campgrounds = <% - JSON.stringify(campgrounds.docs) %>;
 </script>
+
+
 <script src="/js/autocomplete.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
 <% include ../partials/footer%>
