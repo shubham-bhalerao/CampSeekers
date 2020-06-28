@@ -25,13 +25,15 @@ module.exports = {
          }
          let user = await User.register(newUser, req.body.password);
          await passport.authenticate("local");
-         if (user.isAdmin) {
-            req.flash("success", "Welcome To YelpCamp, " + user.username + "! You are an Admin!");
-            res.redirect("/campgrounds");
-         } else {
-            req.flash("success", "Welcome To YelpCamp, " + user.username + "!");
-            res.redirect("/campgrounds");
-         }
+         req.logIn(user,function(){
+            if (user.isAdmin) {
+               req.flash("success", "Welcome To YelpCamp, " + user.username + "! You are an Admin!");
+               res.redirect("/campgrounds");
+            } else {
+               req.flash("success", "Welcome To YelpCamp, " + user.username + "!");
+               res.redirect("/campgrounds");
+            }
+         })(req, res, next);
       } catch (err) {
          console.log(err);
          res.redirect("back");

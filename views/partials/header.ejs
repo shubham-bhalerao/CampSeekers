@@ -30,23 +30,25 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                <li class="nav-item">
-                  <a class="nav-link" href="/campgrounds">Campgrounds</a>
+                  <a class="nav-link" href="/campgrounds">Campsites</a>
                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                <% if(!currentUser){%>
                <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
+                  <a class="nav-link" href="/login">Log In</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/register">SignUp</a>
+                  <a class="nav-link" href="/register">Sign Up</a>
                </li>
                <%} else {%>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false">
                      Notifications
+                     <% if(notifications.length > 0){ %>
                      <%=notifications.length%>
+                     <%}%>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                      <% notifications.forEach(function(notification){ %>
@@ -59,12 +61,12 @@
                   </div>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/users/<%=currentUser._id%>">Signed In As:
+                  <a class="nav-link" href="/users/<%=currentUser._id%>">Signed In :
                      <%=currentUser.username%>
                   </a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="/logout">LogOut</a>
+                  <a class="nav-link" href="/logout">Logout</a>
                </li>
                <%}%>
             </ul>

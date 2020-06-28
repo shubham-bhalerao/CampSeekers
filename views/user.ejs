@@ -1,20 +1,22 @@
 <% include ./partials/header%>
 <div class="container">
    <br />
-   <div class="jumbotron">
+   <div class="jumbotron" style="padding: 30px; border-radius: 10px;">
       <h1 class="display-4">
          <%=user.firstName%> <%=user.lastName%>
       </h1>
       <p class="lead">
-         User Handle: <%=user.username%>
+         Username : <%=user.username%>
          <br />
-         <%if(user.isAdmin){%> Admin <%}%>
+         <%if(user.isAdmin){%> <strong>Admin</strong><%}%>
       </p>
       <hr class="my-4" />
       <% if(currentUser && !doesFollow && !currentUser._id.equals(user._id)){ %>
       <a href="/follow/<%=user._id%>" class="btn btn-primary"
          >Follow <%=user.username%></a
       >
+      <br>
+      <p style="margin-top: 5px;">Follow your friends to get notified whenever they post something!</p>
       <% } %> <% if(currentUser && doesFollow){ %>
       <a href="/unfollow/<%=user._id%>" class="btn btn-primary"
          >Unfollow <%=user.username%></a
@@ -22,61 +24,89 @@
       <% } %>
    </div>
    <p class="lead">
-      Campgrounds Posted By <%=user.username%> :
+      Campsites Posted By <%=user.username%> :
       <strong> <%=campgrounds.length%></strong>
    </p>
    <div class="row">
       <% campgrounds.forEach(function(campground){ %>
-      <div class="col-md-4">
-         <div class="card" style="width: 18rem;">
-            <img
-               class="card-img-top"
-               src="<%=campground.img%>"
-               alt="Card image cap"
-            />
-            <div class="card-body">
-               <h5 class="card-title">
-                  <%=campground.title%>
-               </h5>
-               <a
-                  href="/campgrounds/<%=campground.slug%>"
-                  class="btn btn-primary"
-                  >View</a
-               >
+         <div class="col-md-3">
+            <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
+            <div class="card card-hover" style="margin-top:20px">
+               <div class="inner">
+                  <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
+               </div>
+               <div class="card-body text-center">
+                  <h5 class="card-title">
+                     <%=campground.title%>
+                  </h5>
+   
+                  <% if (campground.rating === 0) { %>
+                  <em>No reviews yet.</em>
+                  <% } else { %>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
+                  <% } %>
+   
+                  <div style="margin-top: 7px;">
+                     Likes:
+                     <span class="badge label-primary"><i class="fas fa-thumbs-up"></i>
+                        <%= campground.likes.length %></span>
+                  </div>
+               </div>
             </div>
+         </a>
          </div>
-      </div>
       <% }); %>
    </div>
 
    <hr />
    <p class="lead">
-      Campgrounds Booked By <%=user.username%> :
+      Campsites Booked By <%=user.username%> :
       <strong> <%=bookedCampgrounds.length%></strong>
    </p>
    <div class="row">
       <% bookedCampgrounds.forEach(function(campground){ %>
-      <div class="col-md-4">
-         <div class="card" style="width: 18rem;">
-            <img
-               class="card-img-top"
-               src="<%=campground.img%>"
-               alt="Card image cap"
-            />
-            <div class="card-body">
-               <h5 class="card-title">
-                  <%=campground.title%>
-               </h5>
-               <a
-                  href="/campgrounds/<%=campground.slug%>"
-                  class="btn btn-primary"
-                  >View</a
-               >
+         <div class="col-md-3">
+            <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
+            <div class="card card-hover" style="margin-bottom:20px">
+               <div class="inner">
+                  <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
+               </div>
+               <div class="card-body text-center">
+                  <h5 class="card-title">
+                     <%=campground.title%>
+                  </h5>
+   
+                  <% if (campground.rating === 0) { %>
+                  <em>No reviews yet.</em>
+                  <% } else { %>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 2.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 3.5) { %> checked <% } %>"></span>
+                  <span class="fa fa-star <% if (campground.rating > 4.5) { %> checked <% } %>"></span>
+                  <% } %>
+   
+                  <div style="margin-top: 7px;">
+                     Likes:
+                     <span class="badge label-primary"><i class="fas fa-thumbs-up"></i>
+                        <%= campground.likes.length %></span>
+                  </div>
+               </div>
             </div>
+         </a>
          </div>
-      </div>
       <% }); %>
    </div>
 </div>
+<script>
+   $('.card-hover').hover(
+       function(){ $(this).addClass('shadow-lg bg-white rounded') },
+       function(){ $(this).removeClass('shadow-lg bg-white rounded') }
+);
+</script>
 
 <% include ./partials/footer%>

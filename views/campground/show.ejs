@@ -57,7 +57,7 @@
                         </button>
                         <% } %>
                         <button type="button" class="btn btn-sm btn-outline-dark ml-1" data-toggle="modal"
-                           data-target="#campgroundLikes">See more details
+                           data-target="#campgroundLikes">See all likes
                         </button>
                      </div>
                   </form>
@@ -107,7 +107,7 @@
                      <%= campground.rating.toFixed(2) %></strong>
                </p>
                <p>
-                  <h4>Latest reviews for this campground:</h4>
+                  <h4>Latest reviews for this campsite:</h4>
                </p>
                <hr>
                <% campground.reviews.slice(0, 5).forEach(function(review){ %>
@@ -146,11 +146,11 @@
                </div>
                <% } %>
                <div>
-                  <a class="btn btn-outline-primary btn-lg <% if (currentUser && 
-                  campground.reviews.some(function (review) 
-                  {return review.author.id.equals(currentUser._id)})
-                  ) { %> disabled <% } %>" href="/campgrounds/<%= campground.slug %>/reviews/new">
-                     Write a New Review</a>
+                  <% if(currentUser && !campground.reviews.some(function (review) 
+                  {return review.author.id.equals(currentUser._id)})){ %>
+                     <a class="btn btn-outline-primary btn-lg" href="/campgrounds/<%= campground.slug %>/reviews/new">
+                     Add a Review</a>
+                   <% } %>
                </div>
             </div>
          </div>
@@ -209,7 +209,7 @@
                      <!-- Modal content-->
                      <div class="modal-content">
                         <div class="modal-header">
-                           <h4 class="modal-title">Campground likes: <%= campground.likes.length %></h4>
+                           <h4 class="modal-title">Campsite likes: <%= campground.likes.length %></h4>
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">

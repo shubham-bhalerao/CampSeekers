@@ -74,7 +74,7 @@ module.exports = {
          let newNotification = {
             user: req.user.username,
             campgroundSlug: campground.slug,
-            createdWhat: "campground"
+            createdWhat: "campsite"
          }
          for (const follower of user.followers) {
             let notification = await Notification.create(newNotification);
@@ -145,7 +145,7 @@ module.exports = {
          campground.img = req.body.campground.img;
          campground.content = req.body.campground.content;
          await campground.save();
-         req.flash("success", "Successfully Updated Campground!");
+         req.flash("success", "Successfully Updated Campsite!");
          res.redirect(`/campgrounds/${campground.slug}`);
       } catch (err) {
          req.flash("error", err.message);
@@ -168,7 +168,7 @@ module.exports = {
             }
          });
          await campground.remove();
-         req.flash("success", "Successfully Deleted Campground");
+         req.flash("success", "Successfully Deleted Campsite");
          res.redirect("/campgrounds");
       } catch (err) {
          console.log(err);
@@ -186,11 +186,11 @@ module.exports = {
          let msg;
          if (foundUserLike) {
             // user already liked, removing like
-            msg = "Campground liked removed";
+            msg = "Campsite liked removed";
             foundCampground.likes.pull(req.user._id);
          } else {
             // adding the new user like
-            msg = "Campground liked";
+            msg = "Campsite liked";
             foundCampground.likes.push(req.user);
          }
          await foundCampground.save();
