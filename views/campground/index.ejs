@@ -4,11 +4,6 @@
    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
    </link>
 </head>
-<style>
-   .jumbotron {
-      margin-top: 30px;
-   }
-</style>
 <div class="container">
    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" style="margin:20px 0;">
       <div class="carousel-inner" style="border-radius: 10px;">
@@ -31,19 +26,23 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-   <div class="card hoverable" style="padding: 0; margin: 0;";>
+   <div class="card">
       <div class="card-body">
          <div class="row">
             <div class="col-md-8">
                <form action="/campgrounds" method="GET" class="form-inline">
-                  <div class="form-group ui-widget">
-                     <input type="text" name="search" id="tags" placeholder="Search" class="form-control">
-                     <input type="submit" class="btn btn-sm ml-1 btn-outline-info" value="Search" class="form-control">
+                  <div class="form-group">
+                     <div class="input-group">
+                        <input type="text" name="search" id="tags" placeholder="Search" class="form-control">
+                        <div class="input-group-append">
+                           <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                  </div>
                   </div>
                </form>
             </div>
             <div class="col-md-4">
-               <a class="btn btn-primary " href="/campgrounds/new" role="button" style="float: right;">Add New Campsite</a>
+               <a class="btn btn-primary addCampsiteBtn" href="/campgrounds/new" role="button"><i class="fas fa-plus"></i> Add New Campsite</a>
             </div>
          </div>
       </div>
@@ -53,7 +52,7 @@
       <div class="col-md-3">
          <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
          <div class="card card-hover" style="margin-top:20px">
-            <div class="inner">
+            <div class="inner" style="max-height: 170px;">
                <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
             </div>
             <div class="card-body text-center">

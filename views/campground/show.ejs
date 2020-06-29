@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-9">
          <div class="card" style="width: 100%; margin-top:30px;">
-            <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
+            <img style="max-height: 600px;" class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
             <div class="card-body">
                <span class="float-right">
                   <% if(currentUser && hasBooked) { %>
@@ -81,9 +81,9 @@
                      <%=moment(campground.createdAt).fromNow()%></em>
                </p>
                <% if(currentUser && currentUser._id.equals(campground.author.id) ||(currentUser && currentUser.isAdmin) ){%>
-               <a href="/campgrounds/<%=campground.slug%>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
+               <a href="/campgrounds/<%=campground.slug%>/edit" class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Edit</a>
                <form class="delete-form" action="/campgrounds/<%=campground.slug%>?_method=DELETE" method="POST">
-                  <button class="btn btn-outline-danger btn-sm">Delete</button>
+                  <button class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
                </form>
                <%}%>
             </div>
@@ -128,11 +128,11 @@
                      </p>
                      <% if(currentUser && review.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
                      <a class="btn btn-sm btn-outline-warning"
-                        href="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>/edit">Edit</a>
+                        href="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>/edit"><i class="far fa-edit"></i> Edit</a>
                      <form class="delete-form"
                         action="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>?_method=DELETE"
                         method="POST">
-                        <input type="submit" class="btn btn-sm btn-outline-danger" value="Delete">
+                        <button class="btn btn-sm btn-outline-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
                      </form>
                      <% } %>
                   </div>
@@ -149,7 +149,7 @@
                   <% if(currentUser && !campground.reviews.some(function (review) 
                   {return review.author.id.equals(currentUser._id)})){ %>
                      <a class="btn btn-outline-primary btn-lg" href="/campgrounds/<%= campground.slug %>/reviews/new">
-                     Add a Review</a>
+                        <i class="fas fa-plus"></i> Add a Review</a>
                    <% } %>
                </div>
             </div>
@@ -157,7 +157,7 @@
          <div class="card comment-section">
             <div class="card-body">
                <div class="text-right">
-                  <a class="btn btn-outline-success" href="/campgrounds/<%= campground.slug %>/comments/new">Add New
+                  <a class="btn btn-outline-success" href="/campgrounds/<%= campground.slug %>/comments/new"><i class="fas fa-plus"></i> Add New
                      Comment</a>
                </div>
                <hr>
@@ -182,11 +182,11 @@
                               <div class="float-right">
                                  <% if(currentUser && currentUser._id.equals(comment.author.id) ||(currentUser && currentUser.isAdmin)){%>
                                  <a href="/campgrounds/<%=campground.slug%>/comments/<%=comment._id%>/edit"
-                                    class="btn btn-sm btn-outline-warning">Edit</a>
+                                    class="btn btn-sm btn-outline-warning"><i class="far fa-edit"></i> Edit</a>
                                  <form class="delete-form"
                                     action="/campgrounds/<%=campground.slug%>/comments/<%=comment._id%>?_method=DELETE"
                                     method="POST">
-                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Delete</button>
                                  </form>
                                  <%}%>
                               </div>

@@ -17,6 +17,9 @@ const express = require("express"),
    keySecret = process.env.SECRET_KEY,
    stripe = require("stripe")(keySecret);
 
+// const seedDb = require("./seeds");
+// seedDb();
+
 //Requiring Routes
 const commentRoutes = require("./routes/comment"),
    campgroundRoutes = require("./routes/campground"),

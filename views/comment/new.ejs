@@ -1,9 +1,9 @@
 <% include ../partials/header%>
 <div class="container">
-   <div class="card shadow bg-white rounded" style="margin: 30px auto; width: 40%;">
+   <div class="card shadow bg-white rounded form-card-short">
       <div class="card-body">
-         <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Add Comment</h2>
-         <form  action="/campgrounds/<%=campground.slug%>/comments" method="POST" style="margin: 0 auto; ">
+         <h2 class="form-heading">Add Comment</h2>
+         <form  action="/campgrounds/<%=campground.slug%>/comments" method="POST" class="form">
             <div class="form-group">
               <label >Comment</label>
               <input type="text" class="form-control" placeholder="Say something..." name="comment[text]">

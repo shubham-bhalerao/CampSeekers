@@ -1,9 +1,9 @@
 <% include ../partials/header%>
 <div class="container">
-  <div class="card shadow bg-white rounded" style="margin: 30px auto; width: 40%;">
+  <div class="card shadow bg-white rounded form-card">
     <div class="card-body">
-      <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Edit Campsite</h2>
-      <form action="/campgrounds/<%=campground.slug%>?_method=PUT" method="POST" style="margin: 0 auto; padding: 10px;">
+      <h2 class="form-heading">Edit Campsite</h2>
+      <form action="/campgrounds/<%=campground.slug%>?_method=PUT" method="POST" class="form">
          <div class="form-row">
            <div class="form-group col-md-6">
              <label >Name</label>

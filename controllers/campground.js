@@ -27,7 +27,7 @@ module.exports = {
                }]
             }, {
                page: req.query.page || 1,
-               limit: 9,
+               limit: 12,
             });
             if (foundCampgrounds.length < 1) {
                req.flash("error", "Oops! No Campgrounds found!")
@@ -40,7 +40,7 @@ module.exports = {
          } else {
             let allCampgrounds = await Campground.paginate({}, {
                page: req.query.page || 1,
-               limit: 9
+               limit: 12
             });
             allCampgrounds.page = Number(allCampgrounds.page);
             res.render("campground/index", {

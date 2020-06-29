@@ -2,6 +2,11 @@
    font-family: 'Open Sans', sans-serif;
 }
 
+body {
+}
+
+
+
 .comment-section,
 .review-section {
    margin-top: 30px;
@@ -10,6 +15,7 @@
 .delete-form {
    display: inline;
 }
+
 
 a {
    text-decoration: none;
@@ -67,3 +73,77 @@ a.custom-card:hover {
    color: inherit;
    text-decoration: none;
 }
+
+/* Form Styles */
+
+.form {
+   margin: 0 auto; 
+   padding: 10px;
+}
+
+.form-heading {
+   text-align:center; 
+   margin-bottom: 0; 
+   margin-top: 20px;
+}
+
+.form-card {
+   margin: 30px auto; 
+   width: 50%;
+}
+
+.form-card-short {
+   margin: 30px auto; 
+   width: 40%;
+}
+
+@media (min-width:200px)  { 
+   .form-card { 
+      width: 100%;
+   }
+   .form-card-short { 
+      width: 90%;
+   }
+}
+
+
+@media (min-width:576px)  { 
+   .form-card { 
+      width: 100%;
+   }
+   .form-card-short { 
+      width: 90%;
+   }
+}
+
+@media (min-width:768px)  { 
+   .form-card { 
+      width: 80%;
+   }
+   .form-card-short { 
+      width: 70%;
+   }
+}
+
+@media (min-width:992px)  { 
+   .form-card {
+      width: 60%;
+   }
+   .form-card-short { 
+      width: 50%;
+   }
+   .addCampsiteBtn{
+      float: right;
+   }
+ }
+
+ @media (min-width:1200px)  { 
+   .form-card {
+      width: 50%;
+   }
+   .form-card-short { 
+      width: 40%;
+   }
+ }
+
+
