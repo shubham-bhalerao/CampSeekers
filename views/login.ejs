@@ -1,22 +1,27 @@
 <% include ./partials/header%>
 <div class="container">
-   <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Log In</h2>
-   <form  action="/login" method="POST" style="width: 40%; margin: 0 auto;">
-      <div class="form-group">
-         <label >Username</label>
-         <input type="text" class="form-control"  placeholder="Username" name="username" required>
+   <div class="card shadow bg-white rounded" style="width: 40%; margin: 30px auto;">
+      <div class="card-body">
+         <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Log In</h2>
+         <form  action="/login" method="POST" style="margin: 0 auto;">
+            <div class="form-group">
+               <label >Username</label>
+               <input type="text" class="form-control"  placeholder="Username" name="username" required>
+            </div>
+            <div class="form-group">
+               <label >Password</label>
+               <span style="float: right;"><a href="/forgot">Forgot your password?</a></span>
+               <input type="password" class="form-control" placeholder="Password" name="password" required>
+            </div>  
+            <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Log In</button>
+            <br>
+            <div class="form-group" style="text-align: center;">
+               <a href="/register">Don't have an account? Sign up</a>   
+            </div> 
+      
+         </form> 
       </div>
-      <div class="form-group">
-         <label >Password</label>
-         <input type="password" class="form-control" placeholder="Password" name="password" required>
-      </div>  
-      <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Log In</button>
-      <br>
-      <div class="form-group">
-         <a href="/forgot" class="btn btn-outline-warning">Forgot Password?</a>
-         <a href="/campgrounds" class="btn btn-outline-dark">Back</a>
-      </div> 
-
-   </form> 
+   </div>
+   
 </div>
 <% include ./partials/footer%>

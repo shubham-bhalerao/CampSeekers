@@ -1,12 +1,16 @@
 <% include ../partials/header%>
 <div class="container">
-   <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Add Comment</h2>
-   <form  action="/campgrounds/<%=campground.slug%>/comments" method="POST" style="width: 40%; margin: 0 auto; ">
-      <div class="form-group">
-        <label >Comment</label>
-        <input type="text" class="form-control" placeholder="Say something..." name="comment[text]">
+   <div class="card shadow bg-white rounded" style="margin: 30px auto; width: 40%;">
+      <div class="card-body">
+         <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Add Comment</h2>
+         <form  action="/campgrounds/<%=campground.slug%>/comments" method="POST" style="margin: 0 auto; ">
+            <div class="form-group">
+              <label >Comment</label>
+              <input type="text" class="form-control" placeholder="Say something..." name="comment[text]">
+            </div>
+            <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Add Comment</button>
+         </form>
       </div>
-      <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Add Comment</button>
-   </form>   
+    </div>
 </div>
 <% include ../partials/footer%>

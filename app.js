@@ -30,6 +30,7 @@ const commentRoutes = require("./routes/comment"),
 //mongodb config
 mongoose.connect("mongodb://localhost:27017/camp-seekers", {
    useNewUrlParser: true,
+   useUnifiedTopology: true,
    useCreateIndex: true //these are to avoid warnings
 });
 

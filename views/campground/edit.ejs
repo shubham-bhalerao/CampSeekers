@@ -1,31 +1,35 @@
 <% include ../partials/header%>
 <div class="container">
-   <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Edit Campsite</h2>
-   <form action="/campgrounds/<%=campground.slug%>?_method=PUT" method="POST" style="width: 40%; margin: 0 auto; padding: 10px;">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label >Name</label>
-          <input type="text" class="form-control" value="<%=campground.title%>" name="campground[title]" required>
-        </div>
-        <div class="form-group col-md-6">
-          <label >Location</label>
-          <input type="text" class="form-control" value="<%=campground.location%>" name="campground[location]">
-        </div>
-      </div>
-      <div class="form-group">
-        <label >Image</label>
-        <input type="text" class="form-control" value="<%=campground.img%>" name="campground[img]">
-      </div>
-      <div class="form-group">
-        <label >Price</label>
-        <input type="number" min="1" class="form-control" value="<%=campground.price%>" name="campground[price]">
-      </div>
-      <div class="form-group">
-          <label >Description</label>
-          <textarea class="form-control" type="text" name="campground[content]"
-                rows="5"><%=campground.content%></textarea>
-      </div>
-      <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Save Campsite</button>
-    </form>   
+  <div class="card shadow bg-white rounded" style="margin: 30px auto; width: 40%;">
+    <div class="card-body">
+      <h2 style="text-align:center; margin-bottom: 0; margin-top: 20px;">Edit Campsite</h2>
+      <form action="/campgrounds/<%=campground.slug%>?_method=PUT" method="POST" style="margin: 0 auto; padding: 10px;">
+         <div class="form-row">
+           <div class="form-group col-md-6">
+             <label >Name</label>
+             <input type="text" class="form-control" value="<%=campground.title%>" name="campground[title]" required>
+           </div>
+           <div class="form-group col-md-6">
+             <label >Location</label>
+             <input type="text" class="form-control" value="<%=campground.location%>" name="campground[location]">
+           </div>
+         </div>
+         <div class="form-group">
+           <label >Image</label>
+           <input type="text" class="form-control" value="<%=campground.img%>" name="campground[img]">
+         </div>
+         <div class="form-group">
+           <label >Price</label>
+           <input type="number" min="1" class="form-control" value="<%=campground.price%>" name="campground[price]">
+         </div>
+         <div class="form-group">
+             <label >Description</label>
+             <textarea class="form-control" type="text" name="campground[content]"
+                   rows="5"><%=campground.content%></textarea>
+         </div>
+         <button type="submit" class="btn btn-lg btn-outline-primary btn-block">Save Campsite</button>
+       </form>
+    </div>
+  </div>
 </div>
 <% include ../partials/footer%>

@@ -107,7 +107,6 @@ module.exports = {
                return camp._id.equals(campground._id);
             });
          }
-         console.log(campground);
          res.render("campground/show", {
             campground,
             keyPublishable,
