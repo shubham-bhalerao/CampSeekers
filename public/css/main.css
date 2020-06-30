@@ -2,12 +2,6 @@
    font-family: 'Open Sans', sans-serif;
 }
 
-body {
-   /* background-image: url(http://i.imgur.com/emvhOnb.jpg);
-   background-size: cover; */
-}
-
-
 
 .comment-section,
 .review-section {
@@ -146,6 +140,4 @@ a.custom-card:hover {
    .form-card-short { 
       width: 40%;
    }
- }
-
-
+}

@@ -18,3 +18,4 @@ Additional Features/Notable Changes:
 15.Migrated to Bootstrap 4
 16.Refactored to have controllers
 17.Used Async Await instead of callbacks 
+18.Weather Api
