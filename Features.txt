@@ -1,4 +1,4 @@
-Additional Features/Notable Changes Added :
+Additional Features/Notable Changes:
 (In no particular order)
 
 1.Password Reset
@@ -7,7 +7,7 @@ Additional Features/Notable Changes Added :
 4.Admin Role
 5.Mapbox
 6.Fuzzy Search
-7.Stripe Payments
+7.Stripe Payments + Payment Successful Mail
 8.Login back to prev Page
 9.User Profiles
 10.Pagination

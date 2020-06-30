@@ -1,8 +1,13 @@
+const { response } = require("express");
+
 const Campground = require("../models/campground"),
    Comment = require("../models/comment"),
    User = require("../models/user"),
    Review = require("../models/review"),
    Notification = require("../models/notification"),
+   moment =require("moment"),
+   fetch = require("node-fetch"),
+   apiKey=process.env.WEATHERAPIKEY,
    keyPublishable = process.env.PUBLISHABLE_KEY;
 
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding"),
@@ -100,19 +105,26 @@ module.exports = {
          }).exec();
          if (!campground) return res.redirect("back");
          let hasBooked = false;
-         let amount = campground.price * 100;
+         let amount = campground.price*100; //stripe uses smallest denomination cents/paise
          if (req.user) {
             let user = await User.findById(req.user._id);
             hasBooked = user.bookedCampgrounds.some(function (camp) {
                return camp._id.equals(campground._id);
             });
          }
+
+         let{current, nextDays} = await getWeatherApiStuff(campground);
+
          res.render("campground/show", {
             campground,
             keyPublishable,
             hasBooked,
-            amount
+            amount,
+            current,
+            nextDays
          });
+
+         
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -205,3 +217,32 @@ module.exports = {
 function escapeRegex(text) {
    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
+
+async function getWeatherApiStuff(campground){
+   let long=campground.coordinates[0];
+   let lat=campground.coordinates[1];
+   let current={};
+   let nextDays=[];
+   let url=`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude={hourly}&appid=${apiKey}&units=metric`;
+   let data=await fetch(url).then(res => res.json());
+
+   current.main=data.current.weather[0].main;
+   current.description=data.current.weather[0].description;
+   current.icon=data.current.weather[0].icon;
+   current.temp=Math.floor(data.current.temp);
+   let i=0;
+   for(const day of data.daily){
+      i++;
+      if(i==1)
+         continue;
+      let t={};
+      t.main=day.weather[0].main;
+      t.description=day.weather[0].description;
+      t.icon=day.weather[0].icon;
+      t.temp=Math.floor(day.temp.day);
+      let date=moment().add(i-1,"days").format("MMM Do");
+      t.date=date;
+      nextDays.push(t);
+   }
+   return {current, nextDays};
+}

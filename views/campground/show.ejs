@@ -3,13 +3,26 @@
 <div class="container">
    <div class="row">
       <div class="col-md-3">
-         <ul class="list-group" style="margin-top:30px">
-            <li class="list-group-item active">Info 1</li>
-            <li class="list-group-item">Info 2</li>
-            <li class="list-group-item">Info 3</li>
+         <div class="weather" style="margin-top: 30px; text-align: center;">
+            <em>Weather Forecast</em>
+            <div>
+               <img src="http://openweathermap.org/img/wn/<%=current.icon%>@2x.png">
+            </div>
+            <div>
+               <%=current.main%> <%=current.temp%> &#8451;
+            <hr>
+            </div>
+         </div>
+         <ul class="list-group" style="list-style: none;">
+            <% nextDays.forEach(function(day){ %>
+               <li class="list-group-item" style="text-align:center">
+                  <em class="mr-2"><%=day.date%> &nbsp <%=day.main%> <%=day.temp%> &#8451;</em>&nbsp
+                     <img style="height:40px; width:40px;" src="http://openweathermap.org/img/wn/<%=day.icon%>@2x.png">
+               </li>
+            <% })%>
          </ul>
          <hr>
-         <div id="map"></div>
+         <div id="map"></div>         
       </div>
       <div class="col-md-9">
          <div class="card" style="width: 100%; margin-top:30px;">
@@ -20,14 +33,15 @@
                   <button class="btn btn-primary" disabled>Booked</button>
                   <% } else if(currentUser){ %>
                   <form action="/charge/<%=campground.slug%>" method="POST">
-                     <strong>Price $<%=campground.price%>.00</strong>
+                     <strong>Price <i class="fas fa-rupee-sign"></i><%=campground.price%></strong>
                      <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
                         data-key="<%=keyPublishable%>" data-locale="auto"
+                        data-currency="inr"
                         data-description="Payment for <%=campground.title%>" data-amount="<%=amount%>"></script>
                   </form>
                   <% } else { %>
                   <article>
-                     <label>Buy for <%=campground.price%></label>
+                     <label><a href="/login">Login to Book for <i class="fas fa-rupee-sign"></i><%=campground.price%></a></label>
                   </article>
                   <% } %>
                </span>
@@ -242,7 +256,7 @@
                </div>
 
                <script>
-                  var campground = <%- JSON.stringify(campground); %>      
+                  var campground = <%- JSON.stringify(campground); %>     
                </script>
                <script src="/js/mapbox.js"></script>
                <% include ../partials/footer%>
