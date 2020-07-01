@@ -93,6 +93,16 @@ a.custom-card:hover {
    width: 40%;
 }
 
+.past-notification {
+   color: lightgray;
+}
+
+.notification-dropdown:hover {
+   background-color: #212529 !important;
+   color: black;
+}
+
+
 @media (min-width:200px)  { 
    .form-card { 
       width: 100%;
