@@ -12,7 +12,7 @@ module.exports = {
       res.render("register");
    },
 
-   async postRegister(req, res) {
+   async postRegister(req, res, next) {
       try {
          let newUser = {
             username: req.body.username,
@@ -20,22 +20,28 @@ module.exports = {
             lastName: req.body.lastName,
             email: req.body.email
          }
-         if (req.body.secretCode === "secretCode123") {
+         if (req.body.secretCode === process.env.SECRET_CODE) {
             newUser.isAdmin = true;
          }
-         let user = await User.register(newUser, req.body.password);
-         await passport.authenticate("local");
-         req.logIn(user,function(){
-            if (user.isAdmin) {
-               req.flash("success", "Welcome To YelpCamp, " + user.username + "! You are an Admin!");
-               res.redirect("/campgrounds");
+         User.register(newUser, req.body.password, function (err, user) {
+            if (err) {
+                req.flash("error", err.message);
+                res.redirect("back");
             } else {
-               req.flash("success", "Welcome To YelpCamp, " + user.username + "!");
-               res.redirect("/campgrounds");
+                passport.authenticate("local")(req, res, function () {
+                    if (user.isAdmin) {
+                        req.flash("success", "Welcome To YelpCamp, " + user.username + "! You are an Admin!");
+                        res.redirect("/campgrounds");
+                    } else {
+                        req.flash("success", "Welcome To YelpCamp, " + user.username + "!");
+                        res.redirect("/campgrounds");
+                    }
+                });
             }
-         })(req, res, next);
+        });
       } catch (err) {
          console.log(err);
+         req.flash("error",err.message);
          res.redirect("back");
       }
    },
