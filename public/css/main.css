@@ -97,6 +97,13 @@ a.custom-card:hover {
    color: lightgray;
 }
 
+.flex-wrapper {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+   justify-content: space-between
+ }
+
 .notification-dropdown:hover {
    background-color: #212529 !important;
    color: black;

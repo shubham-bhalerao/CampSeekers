@@ -1,6 +1,8 @@
 <% include ../partials/header%>
 <div class="container">
-
+   <%if(allNotifications.length==0){ %>
+      <h2 style="text-align: center;" class="mt-3">No Notifications</h2>
+   <% }%>
    <ul class="list-group">
 
       <% allNotifications.forEach(function(notification){ %>
