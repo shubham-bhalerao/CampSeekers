@@ -20,7 +20,7 @@ module.exports = {
             lastName: req.body.lastName,
             email: req.body.email
          }
-         if (req.body.secretCode === process.env.SECRET_CODE) {
+         if (req.body.secretCode === process.env.ADMIN_CODE) {
             newUser.isAdmin = true;
          }
          User.register(newUser, req.body.password, function (err, user) {

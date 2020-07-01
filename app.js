@@ -31,10 +31,12 @@ const commentRoutes = require("./routes/comment"),
 
 
 //mongodb config
-mongoose.connect("mongodb://localhost:27017/camp-seekers", {
+mongoose.connect(`mongodb+srv://shubham:${process.env.DBPASSWORD}@cluster0.zkimq.mongodb.net/camp-seekers?retryWrites=true&w=majority`, {
    useNewUrlParser: true,
    useUnifiedTopology: true,
    useCreateIndex: true //these are to avoid warnings
+},()=>{
+   console.log("DB connected");
 });
 
 app.set("view engine", "ejs");
