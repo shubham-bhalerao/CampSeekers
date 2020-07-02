@@ -19,3 +19,5 @@ Additional Features/Notable Changes:
 16.Refactored to have controllers
 17.Used Async Await instead of callbacks 
 18.Weather Api
+19.Footer
+20.Deployed https://campseekers.herokuapp.com/
