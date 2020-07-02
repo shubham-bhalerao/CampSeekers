@@ -1,7 +1,7 @@
 {
-    "name": "practice",
+    "name": "campseekers",
     "version": "1.0.0",
-    "description": "",
+    "description": "Discover. Book. Camp. Hundreds of campsites",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,7 +19,6 @@
         "express": "^4.17.1",
         "express-session": "^1.17.1",
         "faker": "^4.1.0",
-        "fetch": "^1.1.0",
         "flash": "^1.1.0",
         "method-override": "^3.0.0",
         "moment": "^2.27.0",
