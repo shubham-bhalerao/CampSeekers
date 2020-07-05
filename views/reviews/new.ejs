@@ -1,13 +1,10 @@
 <% include ../partials/header%>
 <div class="container">
-   <div class="card shadow bg-white rounded" style="margin: 30px auto; width: 40%;">
+   <div class="card shadow bg-white rounded form-card-short">
       <div class="card-body">
-         <h1 style="text-align:center" class="mt-4">Write A Review</h1>
-         <div style="width:80%; margin: 20px auto;">
-            <form action="/campgrounds/<%=campground.slug%>/reviews" method="POST">
-               <div class="lead mb-1">
-                  How many Stars would you give ?
-               </div>
+         <h2 class="form-heading">Write A Review</h2>
+            <form action="/campgrounds/<%=campground.slug%>/reviews" method="POST" class="form">
+               <label for="rating">How many stars would you give ?</label>
                <div>
                   <input type="radio" id="first-rate5" name="review[rating]" value="5" checked />
                   <label for="first-rate5" title="5 stars - Amazing">
@@ -39,16 +36,15 @@
                   </label>
                   <div class="form-group">
                      <label>Review </label>
-                     <textarea class="form-control" type="text" name="review[text]"
+                     <textarea class="form-control" type="text" name="review[text]" required
                         placeholder="Write a review for this campsite..." rows="5"></textarea>
                   </div>
                   <div class="form-group">
                      <button class="btn btn-primary btn-lg btn-block btn-outline-primary">Submit Review</button>
                   </div>
+                  <a href="/campgrounds" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-circle-left"></i> Back</a>
             </form>
-            <a href="/campgrounds">Back</a>
          </div>
-      </div>
     </div>
 </div>
 <% include ../partials/footer%>
