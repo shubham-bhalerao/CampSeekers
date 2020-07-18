@@ -28,9 +28,9 @@
                         </p>
                         <% if(currentUser && currentUser._id.equals(review.author.id) || (currentUser && currentUser.isAdmin)){ %>
                         <a class="btn btn-sm btn-outline-warning"
-                           href="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>/edit"><i class="far fa-edit"></i> Edit</a>
+                           href="/campsites/<%=campground.slug %>/reviews/<%=review._id %>/edit"><i class="far fa-edit"></i> Edit</a>
                         <form class="delete-form"
-                           action="/campgrounds/<%=campground.slug %>/reviews/<%=review._id %>?_method=DELETE"
+                           action="/campsites/<%=campground.slug %>/reviews/<%=review._id %>?_method=DELETE"
                            method="POST">
                            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i> Delete</button>
                         </form>

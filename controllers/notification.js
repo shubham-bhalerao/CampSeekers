@@ -8,7 +8,7 @@ module.exports = {
          user.followers.push(req.user._id);
          user.save();
          req.flash("success", `Successfully followed ${user.username}!`);
-         res.redirect("/campgrounds");
+         res.redirect("/campsites");
       } catch (err) {
          req.flash("error", "Something Went Wrong");
          res.redirect("back");
@@ -40,7 +40,7 @@ module.exports = {
          let notification = await Notification.findById(req.params.id);
          notification.isRead = true;
          notification.save();
-         res.redirect(`/campgrounds/${notification.campgroundSlug}`);
+         res.redirect(`/campsites/${notification.campgroundSlug}`);
       } catch (err) {
          req.flash("error", err.message);
          res.redirect("back");
@@ -56,7 +56,7 @@ module.exports = {
          }
          user.save();
          req.flash("success", `Successfully Unfollowed ${user.username}`);
-         res.redirect("/campgrounds");
+         res.redirect("/campsites");
       } catch (err) {
          req.flash("error", err.message);
          res.redirect("back");

@@ -31,10 +31,10 @@ module.exports = {
                 passport.authenticate("local")(req, res, function () {
                     if (user.isAdmin) {
                         req.flash("success", "Welcome To YelpCamp, " + user.username + "! You are an Admin!");
-                        res.redirect("/campgrounds");
+                        res.redirect("/campsites");
                     } else {
                         req.flash("success", "Welcome To YelpCamp, " + user.username + "!");
-                        res.redirect("/campgrounds");
+                        res.redirect("/campsites");
                     }
                 });
             }
@@ -65,7 +65,7 @@ module.exports = {
             if (err) {
                return next(err);
             }
-            let redirectTo = req.session.redirectTo ? req.session.redirectTo : "/campgrounds";
+            let redirectTo = req.session.redirectTo ? req.session.redirectTo : "/campsites";
             delete req.session.redirectTo;
             req.flash("success", `Welcome back ${user.username}`);
             res.redirect(redirectTo);
@@ -76,7 +76,7 @@ module.exports = {
    logout(req, res) {
       req.logout();
       req.flash("success", "Logged You out successfully!");
-      res.redirect("/campgrounds");
+      res.redirect("/campsites");
    },
 
    async userHome(req, res) {

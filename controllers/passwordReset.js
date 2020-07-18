@@ -53,7 +53,7 @@ module.exports = {
             }
             smtpTransport.sendMail(mailOptions, function (err) {
                req.flash("success", `An e-mail has been sent to ${user.email} with further instructions`);
-               res.redirect("/campgrounds");
+               res.redirect("/campsites");
                done(err, "done");
             })
          }
@@ -137,7 +137,7 @@ module.exports = {
             })
          }
       ], function (err) {
-         res.redirect("/campgrounds");
+         res.redirect("/campsites");
       });
    }
 

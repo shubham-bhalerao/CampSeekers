@@ -31,7 +31,7 @@
       <div class="card-body">
          <div class="row">
             <div class="col-md-8">
-               <form action="/campgrounds" method="GET" class="form-inline">
+               <form action="/campsites" method="GET" class="form-inline">
                   <div class="form-group">
                      <div class="input-group">
                         <input type="text" name="search" id="tags" placeholder="Search" class="form-control">
@@ -43,7 +43,7 @@
                </form>
             </div>
             <div class="col-md-4">
-               <a class="btn btn-primary addCampsiteBtn card-hover" href="/campgrounds/new" role="button"><i class="fas fa-plus"></i> Add New Campsite</a>
+               <a class="btn btn-primary addCampsiteBtn card-hover" href="/campsites/new" role="button"><i class="fas fa-plus"></i> Add New Campsite</a>
             </div>
          </div>
       </div>
@@ -51,7 +51,7 @@
    <div class="row">
       <% campgrounds.docs.forEach(function(campground){ %>
       <div class="col-md-3">
-         <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
+         <a href="/campsites/<%=campground.slug%>" class="custom-card">
          <div class="card card-hover" style="margin-top:20px">
             <div class="inner" style="max-height: 170px;">
                <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">

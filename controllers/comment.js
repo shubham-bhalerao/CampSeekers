@@ -40,7 +40,7 @@ module.exports = {
             follower.save();
          }
          req.flash("success", "Successfully created a comment!");
-         res.redirect("/campgrounds/" + req.params.slug);
+         res.redirect("/campsites/" + req.params.slug);
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -66,7 +66,7 @@ module.exports = {
             _id: req.params.comment_id
          }, req.body.comment);
          req.flash("success", "Successfully updated comment");
-         res.redirect("/campgrounds/" + req.params.slug);
+         res.redirect("/campsites/" + req.params.slug);
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -77,7 +77,7 @@ module.exports = {
       try {
          await Comment.findByIdAndRemove(req.params.comment_id);
          req.flash("success", "Successfully deleted comment!");
-         res.redirect("/campgrounds/" + req.params.slug);
+         res.redirect("/campsites/" + req.params.slug);
       } catch (err) {
          console.log(err);
          res.redirect("back");

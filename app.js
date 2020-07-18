@@ -78,9 +78,9 @@ app.use(async function (req, res, next) {
    next();
 });
 
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:slug/comments", commentRoutes);
-app.use("/campgrounds/:slug/reviews", reviewRoutes);
+app.use("/campsites", campgroundRoutes);
+app.use("/campsites/:slug/comments", commentRoutes);
+app.use("/campsites/:slug/reviews", reviewRoutes);
 app.use(notificationRoutes);
 app.use(passwordResetRoutes);
 app.use(stripeRoutes);

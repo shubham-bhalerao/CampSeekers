@@ -3,7 +3,7 @@
    <div class="card shadow bg-white rounded form-card-short">
       <div class="card-body">
          <h2 class="form-heading">Write A Review</h2>
-            <form action="/campgrounds/<%=campground.slug%>/reviews" method="POST" class="form">
+            <form action="/campsites/<%=campground.slug%>/reviews" method="POST" class="form">
                <label for="rating">How many stars would you give ?</label>
                <div>
                   <input type="radio" id="first-rate5" name="review[rating]" value="5" checked />
@@ -42,7 +42,7 @@
                   <div class="form-group">
                      <button class="btn btn-primary btn-lg btn-block btn-outline-primary">Submit Review</button>
                   </div>
-                  <a href="/campgrounds" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-circle-left"></i> Back</a>
+                  <a href="/campsites" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-circle-left"></i> Back</a>
             </form>
          </div>
     </div>

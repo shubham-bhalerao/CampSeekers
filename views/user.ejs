@@ -30,7 +30,7 @@
    <div class="row">
       <% campgrounds.forEach(function(campground){ %>
          <div class="col-md-3">
-            <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
+            <a href="/campsites/<%=campground.slug%>" class="custom-card">
             <div class="card card-hover" style="margin-top:20px">
                <div class="inner" style="max-height: 170px;">
                   <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
@@ -70,7 +70,7 @@
    <div class="row">
       <% bookedCampgrounds.forEach(function(campground){ %>
          <div class="col-md-3">
-            <a href="/campgrounds/<%=campground.slug%>" class="custom-card">
+            <a href="/campsites/<%=campground.slug%>" class="custom-card">
             <div class="card card-hover" style="margin-bottom:20px">
                <div class="inner">
                   <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">

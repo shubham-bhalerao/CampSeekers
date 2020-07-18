@@ -35,8 +35,8 @@ module.exports = {
                limit: 12,
             });
             if (foundCampgrounds.length < 1) {
-               req.flash("error", "Oops! No Campgrounds found!")
-               return res.redirect("/campgrounds");
+               req.flash("error", "Oops! No Campsites found!")
+               return res.redirect("/campsites");
             }
             foundCampgrounds.page = Number(foundCampgrounds.page);
             res.render("campground/index", {
@@ -86,8 +86,8 @@ module.exports = {
             follower.notifications.push(notification);
             follower.save();
          }
-         req.flash("success", "Successfully created campground!");
-         res.redirect("/campgrounds");
+         req.flash("success", "Successfully added campsite!");
+         res.redirect("/campsites");
       } catch (err) {
          console.log(err.message);
       }
@@ -157,7 +157,7 @@ module.exports = {
          campground.content = req.body.campground.content;
          await campground.save();
          req.flash("success", "Successfully Updated Campsite!");
-         res.redirect(`/campgrounds/${campground.slug}`);
+         res.redirect(`/campsites/${campground.slug}`);
       } catch (err) {
          req.flash("error", err.message);
          res.redirect("back");
@@ -167,7 +167,7 @@ module.exports = {
    async deleteCampground(req, res) {
       try {
          let campground = await Campground.findOne({ slug: req.params.slug });
-         if (!campground) return res.redirect("/campgrounds");
+         if (!campground) return res.redirect("/campsites");
          await Comment.remove({
             "_id": {
                $in: campground.comments
@@ -180,7 +180,7 @@ module.exports = {
          });
          await campground.remove();
          req.flash("success", "Successfully Deleted Campsite");
-         res.redirect("/campgrounds");
+         res.redirect("/campsites");
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -206,7 +206,7 @@ module.exports = {
          }
          await foundCampground.save();
          req.flash("success", msg);
-         return res.redirect("/campgrounds/" + foundCampground.slug);
+         return res.redirect("/campsites/" + foundCampground.slug);
       } catch (err) {
          console.log(err);
          res.redirect("back");

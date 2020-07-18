@@ -30,7 +30,7 @@ module.exports = {
             })
             .then(function(charge) {
                req.flash("success", "Successfully Booked Campsite. Email regarding booking has been sent");
-               return res.redirect(`/campgrounds/${campground.slug}`);
+               return res.redirect(`/campsites/${campground.slug}`);
             });
             var smtpTransport = nodemailer.createTransport({
                service: "Gmail",

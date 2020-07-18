@@ -3,7 +3,7 @@
    <div class="card shadow bg-white rounded form-card-short">
       <div class="card-body">
          <h2 class="form-heading">Edit Comment</h2>
-         <form  action="/campgrounds/<%=campgroundSlug%>/comments/<%=comment._id%>?_method=PUT" method="POST" class="form">
+         <form  action="/campsites/<%=campgroundSlug%>/comments/<%=comment._id%>?_method=PUT" method="POST" class="form">
             <div class="form-group">
               <label >Comment</label>
               <input type="text" class="form-control" value="<%=comment.text%>" name="comment[text]">

@@ -84,7 +84,7 @@ middleware.checkReviewExistence = function (req, res, next) {
             });
             if (foundUserReview) {
                req.flash("error", "You already wrote a review.");
-               return res.redirect("/campgrounds/" + foundCampground._id);
+               return res.redirect("/campsites/" + foundCampground._id);
             }
             // if the review was not found, go to the next middleware
             next();

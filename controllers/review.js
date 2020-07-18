@@ -51,7 +51,7 @@ module.exports = {
          campground.rating = calculateAvg(campground.reviews);
          await campground.save();
          req.flash("success", "Successfully added a review");
-         res.redirect("/campgrounds/" + req.params.slug);
+         res.redirect("/campsites/" + req.params.slug);
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -84,7 +84,7 @@ module.exports = {
          campground.rating = calculateAvg(campground.reviews);
          await campground.save();
          req.flash("success", "Successfully edited review");
-         res.redirect(`/campgrounds/${campground.slug}`);
+         res.redirect(`/campsites/${campground.slug}`);
       } catch (err) {
          console.log(err);
          res.redirect("back");
@@ -104,7 +104,7 @@ module.exports = {
          campground.rating = calculateAvg(campground.reviews);
          campground.save();
          req.flash("success", "Successfully deleted review");
-         res.redirect(`/campgrounds/${campground.slug}`);
+         res.redirect(`/campsites/${campground.slug}`);
       } catch (err) {
          console.log(err);
          res.redirect("back");
