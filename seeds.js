@@ -24,14 +24,14 @@ const cities=[
 ]
 
 async function seedCampsites() {
-    await Campground.deleteMany({});
+   //  await Campground.deleteMany({});
     for (const i of new Array(27)) {
         const title = faker.lorem.word();
         const content = faker.lorem.text();
         const index=Math.floor(Math.random()*5);
         const img=imgUrls[index];
         const location=cities[Math.floor(Math.random()*5)];
-        const price=Math.floor(Math.random()*1000)+1;
+        const price=Math.floor(Math.random()*5000)+100;
         const campsiteData = {
             title,
             content,
@@ -42,7 +42,7 @@ async function seedCampsites() {
         
         let campsite = await Campground.create(campsiteData);
         campsite.author.username = "sb";
-        campsite.author.id = "5ef837b9667ffa170c8512bc";
+        campsite.author.id = "5efca4577cc2b3358cdc63bc";
         let response = await geocodingClient.forwardGeocode({
             query: campsite.location,
             limit: 1
@@ -54,3 +54,4 @@ async function seedCampsites() {
 }
 
 module.exports = seedCampsites;
+

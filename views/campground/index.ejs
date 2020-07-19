@@ -84,13 +84,13 @@
    </div>
    <div style="text-align: center; margin: 20px;">
       <% if(campgrounds.page-1>=1){ %>
-      <a href="/campgrounds?page=<%=campgrounds.page-1%>" class="btn btn-primary">Prev</a>
+      <a href="/campsites?page=<%=campgrounds.page-1%>" class="btn btn-primary">Prev</a>
       <% } %>
       <% for(let i=1;i<=campgrounds.pages;i++){ %>
-      <a class="btn btn-primary" href="/campgrounds?page=<%=i%>" <%= i === campgrounds.page ? "style=color:#000" : '' %> > <%=i%> </a>
+      <a class="btn btn-primary" href="/campsites?page=<%=i%>" <%= i === campgrounds.page ? "style=color:#000" : '' %> > <%=i%> </a>
       <% } %>
       <% if( campgrounds.page + 1 <=campgrounds.pages){ %>
-      <a class="btn btn-primary" href="/campgrounds?page=<%=campgrounds.page+1%>">Next</a>
+      <a class="btn btn-primary" href="/campsites?page=<%=campgrounds.page+1%>">Next</a>
       <% } %>
    </div>
 </div>
