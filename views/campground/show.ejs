@@ -51,7 +51,7 @@
 
                <!-- Likes -->
                <span class="float-right">
-                  <button type="button" class="btn btn-xs btn-outline-dark" data-toggle="modal"
+                  <button type="button" class="btn btn-xs btn-outline-secondary" data-toggle="modal"
                      data-target="#campgroundLikes">
                      <span>Total likes: <i class="fas fa-thumbs-up"></i> <%= campground.likes.length %></span>
                   </button>
@@ -70,7 +70,7 @@
                            <i class="fas fa-thumbs-up"></i> Like (<%= campground.likes.length %>)
                         </button>
                         <% } %>
-                        <button type="button" class="btn btn-sm btn-outline-dark ml-1" data-toggle="modal"
+                        <button type="button" class="btn btn-sm btn-outline-secondary ml-1" data-toggle="modal"
                            data-target="#campgroundLikes">See all likes
                         </button>
                      </div>
@@ -81,7 +81,7 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="card">
-                        <div class="card-body">
+                        <div class="card-body boxit">
                            <%=campground.content%>
                         </div>
                      </div>
@@ -117,7 +117,7 @@
                      <%= campground.reviews.length %>)</em>
                </p>
                <p>
-                  Current campground rating: <strong>
+                  Current campsite rating: <strong>
                      <%= campground.rating.toFixed(2) %></strong>
                </p>
                <p>
@@ -171,7 +171,7 @@
          <div class="card comment-section">
             <div class="card-body">
                <div class="text-right">
-                  <a class="btn btn-outline-success" href="/campsites/<%= campground.slug %>/comments/new"><i class="fas fa-plus"></i> Add New
+                  <a class="btn btn-primary" href="/campsites/<%= campground.slug %>/comments/new"><i class="fas fa-plus"></i> Add New
                      Comment</a>
                </div>
                <hr>
@@ -179,7 +179,7 @@
                   <%campground.comments.forEach(function(comment){ %>
                   <div class="col-md-12">
                      <div class="card">
-                        <div class="card-body">
+                        <div class="card-body boxit">
                            <div class="float-left">
                               <p><a href="/users/<%=comment.author.id%>"><strong>
                                        <%=comment.author.username%></strong>

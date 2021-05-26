@@ -5,6 +5,7 @@
    <title>CampSeekers</title>
    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <base href="/"> 
    <!-- Title Icon -->
    <link rel="shortcut icon" href="/images/campground-solid.png" type="image/png">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -21,13 +22,26 @@
    <!-- Open Sans Font -->
    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
    <!-- Custom Css -->
-   <link rel="stylesheet" type="text/css" href="/css/main.css">
+   <link id="theme" rel="stylesheet" href="/css/main.css">
+   <script>
+      const themeStylesheet = document.getElementById('theme');
+      const storedTheme = localStorage.getItem('theme');
+      const themeToggle = document.getElementById('theme-toggle');
+      if(storedTheme){
+         themeStylesheet.href = storedTheme;
+         // if(themeStylesheet.href.includes('main')) {
+         //    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+         // } else {
+         //    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+         // }
+      }
+   </script>
 </head>
 
 <body>
    <div class="flex-wrapper">
    <div>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
          <a class="navbar-brand" href="/"><i class="fas fa-campground"></i> CampSeekers</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,6 +56,9 @@
                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link" title="toggle dark mode" id="theme-toggle" style="cursor: pointer;"><i class="fas fa-sun"></i></a>
+               </li>
                <% if(!currentUser){%>
                <li class="nav-item">
                   <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Log In</a>

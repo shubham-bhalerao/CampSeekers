@@ -50,10 +50,10 @@
    </div>
    <div class="row">
       <% campgrounds.docs.forEach(function(campground){ %>
-      <div class="col-md-3">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
          <a href="/campsites/<%=campground.slug%>" class="custom-card">
          <div class="card card-hover" style="margin-top:20px">
-            <div class="inner" style="max-height: 170px;">
+            <div class="inner">
                <img class="card-img-top" src="<%=campground.img%>" alt="Card image cap">
             </div>
             <div class="card-body text-center">
@@ -62,7 +62,7 @@
                </h5>
 
                <% if (campground.rating === 0) { %>
-               <em>No reviews yet.</em>
+               <em>No reviews</em>
                <% } else { %>
                <span class="fa fa-star checked"></span>
                <span class="fa fa-star <% if (campground.rating > 1.5) { %> checked <% } %>"></span>

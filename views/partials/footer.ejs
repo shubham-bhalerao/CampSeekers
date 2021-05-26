@@ -2,7 +2,7 @@
 
 </div>
 <div class="footer">
-<footer class="page-footer font-small indigo bg-dark" style="color: rgba(255,255,255,.5); margin-top: 50px;">
+<footer class="page-footer font-small indigo" style="color: rgba(255,255,255,.5); margin-top: 50px;">
 
    <div class="container text-center text-md-center">
  
@@ -74,6 +74,30 @@
  </footer>
 
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeStylesheet = document.getElementById('theme');
+      const storedTheme = localStorage.getItem('theme');
+      const themeToggle = document.getElementById('theme-toggle');
+
+      themeToggle.addEventListener('click', () => {
+          // if it's light -> go dark
+          if(themeStylesheet.href.includes('main')){
+              themeStylesheet.setAttribute("href","css/dark-theme.css");
+              themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+          } else {
+              // if it's dark -> go light
+              themeStylesheet.setAttribute("href","css/main.css");
+              themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+          }
+          // save the preference to localStorage
+          localStorage.setItem('theme',themeStylesheet.href)  
+      })
+})
+    
+</script>
  <!-- Footer -->
 
 <!-- JQuery -->

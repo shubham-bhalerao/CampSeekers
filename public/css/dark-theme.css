@@ -1,18 +1,71 @@
 * {
    font-family: "Open Sans", sans-serif;
-   /* background-color: #f7f8f9; */
+}
+
+:root {
+   --primary-color: #fafafa;
+   --secondary-color: #212121;
+}
+
+.dark-theme {
+   --primary-color: #000106;
+   --secondary-color: #fff;
 }
 
 body {
-   background-color: #fafafa;
+   background-color: #15202b;
 }
 
+.card,
+.list-group-item,
+.weather,
 .navbar,
-footer {
-   background-color: #343a40;
+footer,
+.jumbotron,
+textarea,
+.modal-content {
+   background-color: #22303c;
    color: white;
 }
 
+hr {
+   background-color: #15202b;
+}
+
+.boxit {
+   background-color: #15202b;
+}
+
+.btn-primary {
+   color: white;
+   background-color: #1a91da;
+}
+
+.btn-outline-secondary {
+   color: white;
+}
+
+.btn-outline-success {
+   background-color: #1a91da;
+}
+
+.form-control,
+.form-control:focus,
+.form-control:disabled {
+   color: white;
+   background-color: #15202b;
+   border: none;
+}
+
+h2,
+h3 {
+   color: white;
+}
+
+.card .form-card {
+   background-color: #343a40;
+   color: white;
+}
 .comment-section,
 .review-section {
    margin-top: 30px;
@@ -94,6 +147,10 @@ a.custom-card:hover {
 .form-card {
    margin: 30px auto;
    width: 50%;
+}
+
+.lead {
+   color: white;
 }
 
 .form-card-short {
