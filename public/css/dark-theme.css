@@ -62,6 +62,10 @@ h3 {
    color: white;
 }
 
+img {
+   filter: grayscale(20%);
+}
+
 .card .form-card {
    background-color: #343a40;
    color: white;
