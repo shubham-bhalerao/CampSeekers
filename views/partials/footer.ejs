@@ -67,7 +67,7 @@
      </div>
  
    </div>
-   <div class="footer-copyright text-center py-3">© 2020 Copyright:
+   <div class="footer-copyright text-center py-3">© 2021 Copyright:
      <a href="#" style="color: rgba(255,255,255,.5);"> CampSeekers</a>
    </div>
  
@@ -77,6 +77,10 @@
 
 
 <script>
+
+    function js_Load(){
+      document.body.style.visibility='visible'
+    }
     document.addEventListener('DOMContentLoaded', () => {
       const themeStylesheet = document.getElementById('theme');
       const storedTheme = localStorage.getItem('theme');
